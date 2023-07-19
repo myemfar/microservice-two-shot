@@ -19,15 +19,12 @@ def poll():
         try:
             url = "http://wardrobe-api:8000/api/locations/"
             response = requests.get(url)
-            print(response)
             content = json.loads(response.content)
-            print(f'content is {content}')
             for location in content["locations"]:
                 LocationVO.objects.update_or_create(
                     import_href=location["href"],
                     defaults={"closet_name": location["closet_name"]},
                 )
-            print(LocationVO.objects.all())
             # Write your polling logic, here
         except Exception as e:
             print(e, file=sys.stderr)

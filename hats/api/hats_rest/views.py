@@ -28,10 +28,10 @@ class HatDetailEncoder(ModelEncoder):
 
 
 @require_http_methods(["GET", "POST"])
-def api_list_hats(request, location_vo_id=None):
+def api_list_hats(request, hat_id=None):
     if request.method == "GET":
-        if location_vo_id is not None:
-            hats = Hat.objects.filter(location=location_vo_id)
+        if hat_id is not None:
+            hats = Hat.objects.filter(id=hat_id)
         else:
             hats = Hat.objects.all()
         return JsonResponse(

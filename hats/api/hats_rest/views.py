@@ -47,7 +47,7 @@ def api_list_hats(request, location_vo_id=None):
             content["location"] = location
         except LocationVO.DoesNotExist:
             return JsonResponse(
-                {"message": "Invalid location id"},
+                {"message": "Invalid location href"},
                 status=400,
             )
         hat = Hat.objects.create(**content)

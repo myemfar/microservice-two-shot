@@ -4,7 +4,6 @@ Team:
 
 * Bryan F - Hats
 * John R - Shoes
-fff
 
 ## Design
 

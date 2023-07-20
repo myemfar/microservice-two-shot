@@ -1,5 +1,27 @@
+import { NavLink } from "react-router-dom";
+
 function HatsList(props) {
+  const handleDelete = async (event, id) => {
+    event.preventDefault();
+    const url  = `http://localhost:8090/api/hats/${id}`;
+    const fetchConfig = {
+      method: "delete",
+    }
+    const response = await fetch(url, fetchConfig)
+    if (response.ok) {
+      window.location.reload(true)
+    }
+    if (!response.ok) {
+      console.log("error deleting hat")
+    }
+  }
     return (
+      <>
+      <div>
+        <h1>
+          <NavLink className="nav-link" to="/hats/new">Create a new Hat</NavLink>
+        </h1>
+      </div>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -19,12 +41,16 @@ function HatsList(props) {
                 <td>{ hat.color }</td>
                 <td><img src={hat.picture} alt="..." width="300" /></td>
                 <td>{ hat.location.closet_name }</td>
-                <td>details</td>
+                <td><form onSubmit={(event) => handleDelete(event, hat.id)} id={hat.id}>
+                  <button className="brn brn-primary">Delete</button>
+                </form>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      </>
     );
   }
 

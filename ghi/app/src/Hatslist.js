@@ -19,6 +19,7 @@ function HatsList(props) {
                 <td>{ hat.color }</td>
                 <td><img src={hat.picture} alt="..." width="300" /></td>
                 <td>{ hat.location.closet_name }</td>
+                <td>details</td>
               </tr>
             );
           })}
